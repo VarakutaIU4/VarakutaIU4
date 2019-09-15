@@ -1,12 +1,14 @@
 #include <stdio.h>
 
 int main(){
-    int i, j;
-    int a[3];
+    int i, j, f;
+    printf("Amount of numbers:\n");
+	scanf("%d", &f);
+    int a[f];
     int b[8];
 
-printf("Enter 3 numbers: ");
-    for(i = 0; i < 3; i++){
+printf("Enter %d numbers:\n", f);
+    for(i = 0; i < f; i++){
         scanf("%d", &a[i]);
         printf("%d", a[i]);
     while(a[i] > 1){
