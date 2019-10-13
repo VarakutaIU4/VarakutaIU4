@@ -11,7 +11,12 @@ printf("Enter %d numbers:\n", f);
     for(i = 0; i < f; i++){
         scanf("%d", &a[i]);
         printf("%d", a[i]);
-    while(a[i] > 1){
+
+
+        if(a[i] == 0){
+            printf("--->00000000\n");
+        }
+    while(a[i] >= 1){
         for(j = 0; j < 8; j++){
             if(a[i]%2 == 0){
                 b[j] = 0;
@@ -31,4 +36,5 @@ printf("Enter %d numbers:\n", f);
     }
 return 0;
 }
+
 
