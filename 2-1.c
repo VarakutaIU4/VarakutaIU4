@@ -2,20 +2,22 @@
 
 int main(){
 
-    char begin[100] = {"Graph A {\n"};
-    char end[100] = {"}"};
     FILE *f;
     f = fopen("graph.dot", "w");
 
     if(f != NULL){
-        fputs(begin, f);
+        fprintf(f, "Graph A{\n");
     }
 
-    int i, j, p_1, p_2, rib;
+    int i, j, p_1, p_2, rib, x, y;
     printf("Size of matrix:\n");
     scanf("%d", &p_1);
     p_2 = p_1;
     int a[p_1][p_2];
+
+    for(i=1;i<=p_1;i++){
+    fprintf(f, "%d;\n", i);
+    }
 
     printf("Input matrix:\n");
         for(i=1;i<=p_1;i++){
@@ -43,7 +45,7 @@ int main(){
     }
 
     if(f != NULL){
-        fputs(end, f);
+        fprintf(f, "}");
     }
 printf("File graph.dot created\n\n");
 fclose(f);
@@ -59,12 +61,29 @@ fclose(f);
     }
     printf("Rib = %d\n", rib);
 
-    if(rib > (p_1 - 1)*(p_1 - 2)/2){
-        printf("Graph is connected\n");
-    } else {
-    printf("Graph is not connected\n");
+    x = 1;
+    for(int i=1;i<=p_1;i++){
+    y = 0;
+    for(int j=1;j<=p_2;j++){
+        if(a[i][j] == 1){
+            y = 1;
+        }
+        if(a[j][i] == 1){
+            y = 1;
+        }
+    }
+        if(y == 0){
+            x = 0;
+        }
     }
 
+    if(rib > (p_1 - 1)*(p_1 - 2)/2){
+        printf("Graph is connected (by theorem)\n");
+    } else if(x == 0){
+    printf("Graph is not connected\n");
+    } else {
+    printf("Graph is connected\n");
+    }
 
 return 0;
 }
